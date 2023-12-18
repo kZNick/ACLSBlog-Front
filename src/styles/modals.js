@@ -184,6 +184,13 @@ export const ModalPost = styled.div`
   height: 100vh;
   background-color: rgba(18, 18, 20, 0.5);
   z-index: 10;
+  .delteComments{
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .delteComments:hover{
+    color: red;
+  }
   .modalPost {
     z-index: 10;
     display: flex;

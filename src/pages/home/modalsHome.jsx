@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormUpdat, ModalEditProfile, ModalPost } from "../../styles/modals";
 import { AvatarComponet } from "../../components/avatar";
 import { AiOutlineSend } from "react-icons/ai";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 export const AvatarModal = () => {
   const { configAvatar, setConfigAvatar, saveAvatar } = useContext(HomeContext);
@@ -232,6 +233,7 @@ export const PostModal = () => {
     setSavedComments,
     postsModalSave,
     setPostsModalSave,
+    deleteComments
   } = useContext(HomeContext);
   const avatar = JSON.parse(postsModalSave.user.avatar);
   const myConfig = genConfig(avatar);
@@ -275,6 +277,7 @@ export const PostModal = () => {
                           {...commentAvatar}
                         />
                       <span>{comment.user.fullName}</span>
+                      <RiDeleteBin5Line className="delteComments" onClick={()=> deleteComments(comment.id)}/>
                       </div>
                       <p>{comment.content}</p>
                     </li>

@@ -274,7 +274,6 @@ export const HomeProvider = () => {
   };
 
   const deletePost = async () => {
-    console.log(idPost);
     try {
       setLoading(true);
       const requestResult = await apiAclsBlog.delete(
@@ -313,7 +312,11 @@ export const HomeProvider = () => {
         content: savedComments,
       };
       console.log(comementsData);
-      const results = await apiAclsBlog.post(`/comment/${idPost}`, comementsData, headerApi);
+      const results = await apiAclsBlog.post(
+        `/comment/${idPost}`,
+        comementsData,
+        headerApi
+      );
       toast.success("Comentário publicado com sucesso!", {
         position: "top-right",
       });
@@ -323,6 +326,37 @@ export const HomeProvider = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteComments = async (idComment) => {
+    console.log(idComment)
+    try {
+      setLoading(true);
+      const requestResult = await apiAclsBlog.delete(
+        `/comment/${idComment}`,
+        headerApi
+      );
+      console.log(requestResult)
+      postsApi();
+      toast.success("Comentário foi deletado Com sucesso", {
+        position: "top-right",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("😅Ops! Algo deu errado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } finally {
+      setModalPostOn(!modalPostOn)
       setLoading(false);
     }
   };
@@ -367,7 +401,8 @@ export const HomeProvider = () => {
         setModalDeletePost,
         savedComments,
         setSavedComments,
-        createComments
+        createComments,
+        deleteComments
       }}
     >
       <Outlet />

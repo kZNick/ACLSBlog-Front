@@ -1,5 +1,5 @@
-// import ball from "../assets/Ball.gif"
-import { AnimentionStyled } from "../styles/animetion";
+import loadin from "../assets/loadin.gif"
+import { AnimentionStyled, LoadingAnimetions } from "../styles/animetion";
 
 export const AnimetionBackgraud = () => {
   return (
@@ -20,11 +20,11 @@ export const AnimetionBackgraud = () => {
   );
 };
 
-// export const Loading = () =>{
-//   return(
-//     <LoadingAnimetions>
-//       <img src={ball} alt="" />
-//       <h1>Loading...</h1>
-//     </LoadingAnimetions>
-//   )
-// }
+export const Loading = () =>{
+  return(
+    <LoadingAnimetions>
+      <img src={loadin} alt="" />
+      <h1>Loading...</h1>
+    </LoadingAnimetions>
+  )
+}
