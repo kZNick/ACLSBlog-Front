@@ -233,7 +233,8 @@ export const PostModal = () => {
     setSavedComments,
     postsModalSave,
     setPostsModalSave,
-    deleteComments
+    deleteComments,
+    user
   } = useContext(HomeContext);
   const avatar = JSON.parse(postsModalSave.user.avatar);
   const myConfig = genConfig(avatar);
@@ -277,7 +278,7 @@ export const PostModal = () => {
                           {...commentAvatar}
                         />
                       <span>{comment.user.fullName}</span>
-                      <RiDeleteBin5Line className="delteComments" onClick={()=> deleteComments(comment.id)}/>
+                      {comment.user.id === user.id? (<RiDeleteBin5Line className="delteComments" onClick={()=> deleteComments(comment.id)}/>) : null}
                       </div>
                       <p>{comment.content}</p>
                     </li>
